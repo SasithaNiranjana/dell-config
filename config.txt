@@ -1,0 +1,14 @@
+============ Wifi Config ===============
+sudo apt install git build-essentialsudo apt install git build-essential
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/backport-iwlwifi.git
+cd backport-iwlwificd
+make defconfig-iwlwifi-public
+sed -i 's/CPTCFG_IWLMVM_VENDOR_CMDS=y/# CPTCFG_IWLMVM_VENDOR_CMDS is not set/' .config
+make -j4
+sudo make install
+cd /lib/firmware/
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/iwlwifi-9000-pu-b0-jf-b0-38.ucode
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/iwlwifi-9260-th-b0-jf-b0-38.ucode
+
+============ Grub Config ===================
+GRUB_CMDLINE_LINUX_DEFAULT="nosplash noapic noacpi"
